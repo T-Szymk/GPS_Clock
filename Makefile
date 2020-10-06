@@ -1,15 +1,17 @@
-FILENAME = main
+FILENAME = blinkLED
 #PORT = /dev/cu.usbserial-00000000
-DEVICE = atmega328p
+DEVICE = atmega168p
 PROGAMMER = atmelice_isp
 BAUD = 9600UL
-CC = avr-gcc -Wall -Os -mmcu=$(DEVICE)
+CC = avr-gcc 
+CFLAGS = -Wall  -std=gnu99 -Os -mmcu=$(DEVICE)
 
-default: build flash clean
+default: 
+	build flash clean
 
 build:
-	$(CC) -c $(FILENAME).c -o $(FILENAME).o
-	$(CC) -o $(FILENAME).elf $(FILENAME).o
+	$(CC) $(CFLAGS) -c $(FILENAME).c -o $(FILENAME).o
+	$(CC) $(CFLAGS) -o $(FILENAME).elf $(FILENAME).o
 	avr-objcopy -j .text -j .data -O ihex $(FILENAME).elf $(FILENAME).hex
 	avr-size --format=avr --mcu=$(DEVICE) $(FILENAME).elf
 
