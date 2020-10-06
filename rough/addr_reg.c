@@ -12,7 +12,7 @@ int main(void) {
   *DDRB  = 0x01; // sets memory address of DDRB; PORTB,Pin1 = output
   *PORTB = 0x01;
 
-  volatile uint32_t iter = 0;
+  uint32_t iter = 0;
 
   while(1) {
 
