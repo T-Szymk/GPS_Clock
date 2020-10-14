@@ -47,12 +47,10 @@ u8 rx_blocking(void) {
 int main(void) {
 
   u8 data_val = 0;
-  DDRB |= 0b00000001;
 
   uart_init();
 
   while(1) {
-    PORTB ^= 0b00000001;
 
     data_val = rx_blocking();
 
