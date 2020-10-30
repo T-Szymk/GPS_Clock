@@ -29,7 +29,7 @@ void uart_init(void) {
   UBRR0H = 0x00;
   UBRR0L = 0x0c;
   
-  UCSR0B = (1 << RXEN0) | (1 << TXEN0); // tx/tx enable
+  UCSR0B = (1 << RXEN0) | (1 << TXEN0); // tx/rx enable
   UCSR0C = (3 << UCSZ00); // 8-bit character size
   UCSR0A |= (1 << U2X0); // double speed
 }

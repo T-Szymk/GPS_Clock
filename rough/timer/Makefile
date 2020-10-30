@@ -4,7 +4,7 @@ DEVICE = atmega168p
 PROGAMMER = atmelice_isp
 BAUD = 9600
 CC = avr-gcc 
-CFLAGS = -Wall  -std=gnu99 -Os -mmcu=$(DEVICE)
+CFLAGS = -Wall -Wextra -std=gnu99 -Os -mmcu=$(DEVICE)
 
 build:
 	$(CC) $(CFLAGS) -c $(FILE).c -o $(FILE).o
@@ -20,5 +20,4 @@ clean:
 	rm $(FILE).elf
 	rm $(FILE).hex
 
-default: 
-	build flash clean
+default: build flash clean

@@ -14,24 +14,26 @@ ISR(TIMER0_COMPB_vect) {
 	PORTD ^= (1 << 3);
 }
 
-ISR(TIMER0_OVF_vet) {
-	PORTB ^= (1 << 7);
+ISR(TIMER1_OVF_vect) {
+	PORTB ^= 1;
 }
 
 int main() {
 
-	TIMSK0 = 0x07;
-	TCCR0A = 0x50;
-	TCCR0B = 0x05;
-	TCNT0  = 0x00;
-	OCR0A  = 0x7F;
-	OCR0B  = 0x7F;
+	TCCR1A = 0x00;
+	TCCR1B = 0x05; // 1:1024 prescaler
+	TCCR1C = 0x00;
+	TCNT1L  = 0x00;
+	TCNT1H  = 0x00;
+	OCR1AL  = 0x00;
+	OCR1AH  = 0x00;
+	OCR1BL  = 0x00;
+	OCR1BH  = 0x00;
 
-	TIFR0  = 0x00;
-	sei();
-	DDRD = 0xFF;
+	TIFR1  = 0x00;
+	TIMSK1 = 0x01;
+	sei(); // set global interrupts
 	DDRB = 0xFF;
-	PORTD = 0x00;
 	PORTB = 0x00;
 
 	while(1) {}
