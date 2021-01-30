@@ -9,14 +9,27 @@ Example:
 $GPGGA,         ,          , ,           , ,0, 00  ,99.99,    , ,      , ,       ,*48
 $GPGGA,175935.00,5154.93886,N,00204.21847,W,1, 09  , 0.98,81.3,M,48.0,  M,       ,*7B
 
+Note if GGA FS (Fix Status):
+0, there is no fix
+1, standard GPS
+2, differential GPS
+6, estimated (dead reckoning) fix
+
 Definition:
 $GPRMC,hhmmss,   status,latitude,  N,longitude,  E,spd,  cog,ddmmyy,mv,mvE,mode*cs
 Example:
 $GPRMC,         ,V,               , ,           , ,     ,   ,      ,  ,   ,N*53
 $GPRMC,175936.00,A,     5154.93886,N,00204.21831,W,0.162,   ,170620,  ,   ,A*6C
 
+Note that if GRMC status is V, there is no fix.
+If status is A, there is a fix.
+
 Definition:
-$GPGSA,Smode,FS{,sv},PDOP,HDOP,VDOP*cs<CR><LF>
+$GPGSA,Smode,FS{,sv},PDOP,HDOP,VDOP*cs
 Example:
 $GPGSA,A,    1,     ,,,,,,,,,,,,99.99,99.99,99.99*30
 $GPGSA,A,    3,22,03,01,17,11,14,19,32,28,,,,1.63,0.98,1.31*06
+
+Note that in GSA, if FSA == 1, there is no fix or there is a fix but user limits have been exceeded.
+If FSA == 2  there is a 2D fix, dead reckoning fix or dead reckoning fix but user limits have been exceeded.
+If FSA == 3 there is a 3D fix.
